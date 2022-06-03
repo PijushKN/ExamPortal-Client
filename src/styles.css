@@ -2,3 +2,28 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.font-oxygen{
+    font-family: 'Oxygen', sans-serif;
+}
+.text-center{
+    text-align: center;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.mt-2{
+    margin-top: 20px;
+}
+.mb-2{
+    margin-bottom: 20px;
+}
+
+.mr-2{
+    margin-right: 20px;
+}
+
+.pb-2{
+    padding-bottom: 20px;
+}
