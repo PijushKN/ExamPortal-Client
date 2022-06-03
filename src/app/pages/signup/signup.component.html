@@ -1,7 +1,8 @@
 <div class="bootstrap-wrapper">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-3 margins border">
+            <div class="col-md-6 offset-md-3 margins">
+                <mat-card>
                 <div class="text-center">
                     <img class="text-center"
                         src="../../../assets/242-2423250_exam-png-transparent-image-exam-png-png-download-removebg-preview.png"
@@ -12,45 +13,46 @@
                     <!-- username field-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Username</mat-label>
-                        <input matInput placeholder="Enter your username here" name="username" [(ngModel)]="user.username" #username="ngModel">
+                        <input matInput placeholder="Enter your username here" required name="username" [(ngModel)]="user.username" #username="ngModel">
                     </mat-form-field>
 
                     <!--Password Field-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Password</mat-label>
-                        <input type="password" matInput placeholder="Enter your password here" name="password" [(ngModel)]="user.password" #password="ngModel">
+                        <input type="password" matInput placeholder="Enter your password here" required name="password" [(ngModel)]="user.password" #password="ngModel">
                     </mat-form-field>
 
                     <!--First Name Field-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>First Name</mat-label>
-                        <input matInput placeholder="Enter your first name here" name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel">
+                        <input matInput placeholder="Enter your first name here" required name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel">
                     </mat-form-field>
 
                     <!--Last Name Field-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Last Name</mat-label>
-                        <input matInput placeholder="Enter your last name here" name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel">
+                        <input matInput placeholder="Enter your last name here" required name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel">
                     </mat-form-field>
 
                     <!--Email Field-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Email</mat-label>
-                        <input type="Email" matInput placeholder="Enter your email here" name="email" [(ngModel)]="user.email" #email="ngModel">
+                        <input type="Email" matInput placeholder="Enter your email here" required name="email" [(ngModel)]="user.email" #email="ngModel">
                     </mat-form-field>
 
                     <!--Password Field-->
                     <mat-form-field class="full-width" appearance="outline">
                         <mat-label>Phone no</mat-label>
-                        <input type="number" matInput placeholder="Enter your phone number here" name="phone" [(ngModel)]="user.phone" #phone="ngModel">
+                        <input type="number" matInput placeholder="Enter your phone number here" required name="phone" [(ngModel)]="user.phone" #phone="ngModel">
                     </mat-form-field>
 
                     <!--buttons-->
                     <div class="container text-center">
-                        <button typr="submit" class="btn"  mat-raised-button color="primary" >submit</button>
+                        <button typr="submit" class="btn"  mat-raised-button color="primary" [disabled]="!signUpForm.valid" >submit</button>
                         <button type="reset" mat-raised-button color="warn">Clear</button>
                     </div>
                 </form>
+            </mat-card>
             </div>
         </div>
     </div>

@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user.model';
 import { UserServiceService } from 'src/app/services/UserService/user-service.service';
 
@@ -8,16 +11,23 @@ import { UserServiceService } from 'src/app/services/UserService/user-service.se
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  public user:User
-  constructor(private userService:UserServiceService) { }
+  public user: User
+  @ViewChild('signUpForm')signUpForm:NgForm
+  constructor(private userService: UserServiceService, public snackbar: MatSnackBar,private router:Router) { }
 
   ngOnInit(): void {
-    this.user = new User('','','','','','')
+    this.user = new User('', '', '', '', '', '')
   }
-  onSubmit(){
+  onSubmit() {
     this.userService.createUser(this.user).subscribe(
-      response=>alert('User Created'),
-      error=>alert('User Exists.Please Login')
+      response => this.snackbar.open('User Created Successfully', '', {
+        duration: 3000
+      }).afterDismissed().subscribe(
+        ()=>this.router.navigate(['login'])
+      ),
+      error => this.snackbar.open('User Already Present.', 'Ok').onAction().subscribe(
+        ()=>this.signUpForm.reset()
+      )
     )
   }
 
