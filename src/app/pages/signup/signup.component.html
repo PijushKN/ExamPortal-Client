@@ -3,56 +3,71 @@
         <div class="row">
             <div class="col-md-6 offset-md-3 margins">
                 <mat-card>
-                <div class="text-center">
-                    <img class="text-center"
-                        src="../../../assets/242-2423250_exam-png-transparent-image-exam-png-png-download-removebg-preview.png"
-                        alt="" height="140px" width="140px">
-                </div>
-                <h2 class="text-center font-oxygen">Create Your Exam Portal Account!!</h2>
-                <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
-                    <!-- username field-->
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Username</mat-label>
-                        <input matInput placeholder="Enter your username here" required name="username" [(ngModel)]="user.username" #username="ngModel">
-                    </mat-form-field>
-
-                    <!--Password Field-->
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Password</mat-label>
-                        <input type="password" matInput placeholder="Enter your password here" required name="password" [(ngModel)]="user.password" #password="ngModel">
-                    </mat-form-field>
-
-                    <!--First Name Field-->
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>First Name</mat-label>
-                        <input matInput placeholder="Enter your first name here" required name="firstName" [(ngModel)]="user.firstName" #firstName="ngModel">
-                    </mat-form-field>
-
-                    <!--Last Name Field-->
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Last Name</mat-label>
-                        <input matInput placeholder="Enter your last name here" required name="lastName" [(ngModel)]="user.lastName" #lastName="ngModel">
-                    </mat-form-field>
-
-                    <!--Email Field-->
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Email</mat-label>
-                        <input type="Email" matInput placeholder="Enter your email here" required name="email" [(ngModel)]="user.email" #email="ngModel">
-                    </mat-form-field>
-
-                    <!--Password Field-->
-                    <mat-form-field class="full-width" appearance="outline">
-                        <mat-label>Phone no</mat-label>
-                        <input type="number" matInput placeholder="Enter your phone number here" required name="phone" [(ngModel)]="user.phone" #phone="ngModel">
-                    </mat-form-field>
-
-                    <!--buttons-->
-                    <div class="container text-center">
-                        <button typr="submit" class="btn"  mat-raised-button color="primary" [disabled]="!signUpForm.valid" >submit</button>
-                        <button type="reset" mat-raised-button color="warn">Clear</button>
+                    <div class="text-center">
+                        <img class="text-center"
+                            src="../../../assets/242-2423250_exam-png-transparent-image-exam-png-png-download-removebg-preview.png"
+                            alt="" height="140px" width="140px">
                     </div>
-                </form>
-            </mat-card>
+                    <h2 class="text-center font-oxygen">Create Your Exam Portal Account!!</h2>
+                    <form (ngSubmit)="onSubmit()" #signUpForm="ngForm">
+                        <!-- username field-->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Username</mat-label>
+                            <input matInput placeholder="Enter your username here" required name="username"
+                                [(ngModel)]="user.username" #username="ngModel" minlength="6" maxlength="8">
+                            <mat-hint *ngIf="!username.valid && username.dirty">Username must be 6-8 letters.</mat-hint>
+                        </mat-form-field>
+
+                        <!--Password Field-->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Password</mat-label>
+                            <input type="password" matInput placeholder="Enter your password here" required
+                                name="password" [(ngModel)]="user.password" #password="ngModel"
+                                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,16}">
+                            <mat-hint *ngIf="!password.valid && password.dirty">Password must be 8-16 characters long
+                                and must
+                                contain a lowercase,uppercase letter and a number.</mat-hint>
+                        </mat-form-field>
+
+                        <!--First Name Field-->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="Enter your first name here" required name="firstName"
+                                [(ngModel)]="user.firstName" #firstName="ngModel">
+                            <mat-hint *ngIf="!firstName.valid && firstName.touched">First Name is Required</mat-hint>
+                        </mat-form-field>
+
+                        <!--Last Name Field-->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Enter your last name here" required name="lastName"
+                                [(ngModel)]="user.lastName" #lastName="ngModel">
+                            <mat-hint *ngIf="!lastName.valid && lastName.touched">Last Name is Required</mat-hint>
+                        </mat-form-field>
+
+                        <!--Email Field-->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Email</mat-label>
+                            <input type="email" matInput placeholder="Enter your email here" required name="email"
+                                [(ngModel)]="user.email" #email="ngModel" pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+                            <mat-hint *ngIf="!email.valid && email.dirty">Please provide a valid email</mat-hint>
+                        </mat-form-field>
+
+                        <!--Phone no Field-->
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Phone no</mat-label>
+                            <input type="number" matInput placeholder="Enter your phone number here" required
+                                name="phone" [(ngModel)]="user.phone" #phone="ngModel" pattern="[6-9]{1}[0-9]{9}" maxlength="10">
+                            <mat-hint *ngIf="!phone.valid && phone.dirty">Please provide a valid Phone number with 10 digits</mat-hint>
+                        </mat-form-field>
+
+                        <!--buttons-->
+                        <div class="container text-center">
+                            <button type="submit" class="btn" mat-raised-button color="primary">submit</button>
+                            <button type="reset" mat-raised-button color="warn">Clear</button>
+                        </div>
+                    </form>
+                </mat-card>
             </div>
         </div>
     </div>

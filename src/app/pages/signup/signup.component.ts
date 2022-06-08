@@ -12,23 +12,28 @@ import { UserServiceService } from 'src/app/services/UserService/user-service.se
 })
 export class SignupComponent implements OnInit {
   public user: User
-  @ViewChild('signUpForm')signUpForm:NgForm
-  constructor(private userService: UserServiceService, public snackbar: MatSnackBar,private router:Router) { }
+  @ViewChild('signUpForm') signUpForm: NgForm
+  constructor(private userService: UserServiceService, public snackbar: MatSnackBar, private router: Router) { }
 
   ngOnInit(): void {
     this.user = new User('', '', '', '', '', '')
   }
   onSubmit() {
-    this.userService.createUser(this.user).subscribe(
-      response => this.snackbar.open('User Created Successfully', '', {
-        duration: 3000
-      }).afterDismissed().subscribe(
-        ()=>this.router.navigate(['login'])
-      ),
-      error => this.snackbar.open('User Already Present.', 'Ok').onAction().subscribe(
-        ()=>this.signUpForm.reset()
+    if (this.signUpForm.invalid) {
+      this.snackbar.open('Please Provide Valid Input','',{duration:3000})
+    }
+    else {
+      this.userService.createUser(this.user).subscribe(
+        response => this.snackbar.open('User Created Successfully', '', {
+          duration: 3000
+        }).afterDismissed().subscribe(
+          () => this.router.navigate(['login'])
+        ),
+        error => this.snackbar.open('User Already Present.', 'Ok').onAction().subscribe(
+          () => this.signUpForm.reset()
+        )
       )
-    )
+    }
   }
 
 }

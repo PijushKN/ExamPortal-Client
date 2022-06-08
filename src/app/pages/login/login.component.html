@@ -10,20 +10,21 @@
                                 alt="" height="140px" width="140px">
                         </div>
                         <h1 class="text-center font-oxygen">Login</h1>
-                        <form>
+                        <!--username field-->
+                        <form (ngSubmit)="onLoginSubmit()" #loginForm="ngForm">
                             <mat-form-field class="full-width" appearance="outline">
                                 <mat-label>Username</mat-label>
-                                <input matInput placeholder="Enter your username here" name="username">
+                                <input matInput placeholder="Enter your username here" #username="ngModel" name="username" required [(ngModel)]="loginDetails.username">
                             </mat-form-field>
         
                             <!--Password Field-->
                             <mat-form-field class="full-width" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input type="password" matInput placeholder="Enter your password here" name="password">
+                                <input type="password" matInput placeholder="Enter your password here" #password="ngModel" name="password"  required [(ngModel)]="loginDetails.password">
                             </mat-form-field>
 
                             <div class="container text-center">
-                                <button typr="submit" class="btn"  mat-raised-button color="primary" >submit</button>
+                                <button typr="submit" class="btn"  mat-raised-button color="primary" >Login</button>
                                 <button type="reset" mat-raised-button color="warn">Clear</button>
                             </div>
                         </form>
