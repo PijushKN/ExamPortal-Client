@@ -35,16 +35,18 @@ export class LoginComponent implements OnInit {
               this.auth.setUser(response);
               if (this.auth.getUserRole() == 'ADMIN') {
                 this.router.navigate(['admin-dashboard']);
+                this.auth.loginStatusSubject.next(true)
               }
               else if (this.auth.getUserRole() == 'NORMAL') {
                 this.router.navigate(['user-dashboard']);
+                this.auth.loginStatusSubject.next(true)
               } else {
                 this.auth.logout();
               }
             }
           );
         },
-        error => console.log(error)
+        error => this.snackBar.open('Invalid Username or Password','',{duration:3000})
       )
 
     }

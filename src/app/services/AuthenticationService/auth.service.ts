@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import { UserLoginDetails } from 'src/app/models/login/user-login-details.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
+  public loginStatusSubject = new Subject<boolean>();
   private baseUrl:String = 'http://localhost:8080/'
 
   constructor(private http:HttpClient) { }
